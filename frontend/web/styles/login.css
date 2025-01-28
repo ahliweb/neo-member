@@ -1,0 +1,312 @@
+/* Namespace for Login Page */
+/* Hide unused containers */
+#desktop-login-container {
+  display: none; /* Default hidden; shown dynamically by JS */
+}
+
+#mobile-login-container {
+  display: none; /* Default hidden; shown dynamically by JS */
+}
+
+/* Only show the active container */
+.login-page[data-device='desktop'] #desktop-login-container {
+  display: block;
+}
+
+.login-page[data-device='mobile'] #mobile-login-container {
+  display: block;
+}
+
+.login-page[data-device='desktop'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #22C55E;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+.login-page[data-device='mobile'] {
+    height: 100vh;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .login-page[data-device='desktop'] .login-container {
+    width: 404px;
+    height: 547px;
+    padding: 32px;
+  }
+  
+  .login-page[data-device='mobile'] .login-container {
+    width: 300px;
+    padding: 24px;
+  }
+  
+  .login-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .login-page .logo {
+    width: 160px;
+    margin-bottom: 16px;
+  }
+  
+  .login-page h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .login-page p {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 24px;
+  }
+  
+  .login-page .form-group {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+
+
+  
+  .login-page label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .login-page input[type="text"],
+  .login-page input[type="password"] {
+    padding: 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+    background-color: #F9FAFB;
+    max-width: -webkit-fill-available;
+  }
+  
+  .login-page input[type="text"]:focus,
+  .login-page input[type="password"]:focus {
+    outline: none;
+    border-color: #16A34A;
+    box-shadow: 0px 0px 4px rgba(22, 163, 74, 0.5);
+  }
+  
+  .login-page .remember-password {
+    display: flex;
+    font-size: 0.875rem;
+    color: #6B7280;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-direction: row;
+  }
+  
+  .login-page .remember-password input {
+    margin-right: 8px;
+  }
+  
+  .login-page .login-button {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #16A34A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-page .login-button:hover {
+    background-color: #15803D;
+  }
+  
+  /* Password Container */
+  .login-page .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .login-page .password-container input {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .login-page .password-container .password-toggle {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    /* font-size: 1rem;
+    color: #6b7280; */
+    cursor: pointer;
+  }
+  
+  .login-page .password-container .password-toggle:hover {
+    color: #374151;
+  }
+
+  .login-page .password-container .password-toggle:focus {
+    outline: none;
+  }
+  
+  .login-page .password-container .password-toggle .toggle-icon {
+    width: 24px; /* Ukuran ikon */
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .login-page .login-container {
+      width: 90%; /* Adjust width for smaller screens */
+      padding: 24px;
+    }
+  
+    .login-page .logo {
+      width: 60px;
+      margin-bottom: 12px;
+    }
+  
+    .login-page h1 {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+  
+    .login-page p {
+      font-size: 0.75rem;
+      margin-bottom: 16px;
+    }
+  
+    .login-page .login-button {
+      font-size: 0.875rem;
+    }
+  }
+
+/* Mobile Login Page */
+.login-page-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo-mobile {
+  width: 120px;
+  margin-bottom: 24px;
+}
+
+/* Title */
+.login-page-mobile h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Form Group */
+.form-group-mobile {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-group-mobile label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-group-mobile input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #F9FAFB;
+}
+
+.form-group-mobile input:focus {
+  outline: none;
+  border-color: #16A34A;
+  box-shadow: 0px 0px 4px rgba(22, 163, 74, 0.5);
+}
+
+/* Password Container */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  padding-right: 48px;
+}
+
+.password-container .password-toggle {
+  position: absolute;
+  right: 12px;
+  font-size: 1.5rem;
+  color: #6B7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.password-container .password-toggle:hover {
+  color: #374151;
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #16A34A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.login-button:hover {
+  background-color: #15803D;
+}
+
+/* Footer Illustration */
+.footer-illustration {
+  position: absolute;
+  bottom: 0; /* Tetap di bawah layar */
+  left: 0;
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  display: none; /* Default hidden */
+}
+
+.login-page[data-device='mobile'] .footer-illustration {
+  display: block; /* Only show for mobile */
+}
+

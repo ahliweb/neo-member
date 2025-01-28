@@ -1,0 +1,81 @@
+/* Profile Page */
+.mobile-profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.mobile-profile-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.mobile-profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.mobile-profile-card h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.mobile-profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mobile-profile-row {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.mobile-profile-label {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.mobile-profile-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.mobile-status.valid {
+  color: #22C55E;
+}
+
+.mobile-status.invalid {
+  color: #EF4444;
+}
+
+/* Logout Button */
+.mobile-logout-button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #EF4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mobile-logout-button:hover {
+  background-color: #DC2626;
+}

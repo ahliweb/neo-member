@@ -1,0 +1,25 @@
+class: Member
+table: member
+fields:
+  namaPelanggan: String
+  noWhatsapp: String
+  nik: int
+  alamatKtp: String
+  kelurahan: String
+  kecamatan: String
+  kabupaten: String
+  provinsi: String
+  status: String
+  ktp: String?
+  tanggalDibuat: DateTime
+
+  # Kolom baru (alamat domisili)
+  alamatDomisili: String?
+  kelurahanDomisili: String?
+  kecamatanDomisili: String?
+  kabupatenDomisili: String?
+  provinsiDomisili: String?
+indexes:
+  nik_pelanggan_idx:
+    fields: nik
+    unique: true

@@ -1,0 +1,80 @@
+/* Sales Informasi Styles */
+
+/* General Styles for Sales Informasi Page */
+.sales-informasi-page .sales-header h1 {
+    margin-top: 8px;
+    font-size: 1.5rem; /* Sesuaikan ukuran teks */
+    font-weight: bold;
+    color: #111827;
+  }
+  
+  /* Filter Buttons */
+  .sales-informasi-page .filter-buttons {
+    display: flex;
+    justify-content: space-between; /* Rata kiri-kanan */
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .sales-informasi-page .filter-button {
+    flex: 1; /* Semua tombol memiliki lebar yang sama */
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .sales-informasi-page .filter-button.active {
+    background-color: #16a34a;
+    color: white;
+    border-color: #16a34a;
+  }
+  
+  /* Informasi List */
+  .sales-informasi-page .informasi-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sales-informasi-page .informasi-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  
+  .sales-informasi-page .informasi-icon {
+    background-color: #00760B; /* Background hijau */
+    border-radius: 50%; /* Membuat ikon menjadi lingkaran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sales-informasi-page .informasi-icon img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .sales-informasi-page .informasi-text h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #111827;
+  }
+  
+  .sales-informasi-page .informasi-text p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  

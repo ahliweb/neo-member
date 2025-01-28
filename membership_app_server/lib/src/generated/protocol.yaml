@@ -1,0 +1,29 @@
+databaseMember:
+  - getAllDatabaseMembers:
+  - getDatabaseMemberById:
+  - addDatabaseMember:
+  - updateDatabaseMember:
+  - deleteDatabaseMember:
+example:
+  - hello:
+informasi:
+  - getAllInformasi:
+  - getInformasiById:
+  - addInformasi:
+  - updateInformasi:
+  - deleteInformasi:
+member:
+  - getAllMembers:
+  - getMemberById:
+  - addMember:
+  - updateMember:
+  - deleteMember:
+sales:
+  - getAllSales:
+  - getSalesById:
+  - addSales:
+  - updateSales:
+  - deleteSales:
+  - getSalesMembers:
+  - addMemberToSales:
+  - removeMemberFromSales:

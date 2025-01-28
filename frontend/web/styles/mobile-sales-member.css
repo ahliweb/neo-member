@@ -1,0 +1,267 @@
+/* Namespace for Sales Member Page */
+.sales-member-page {
+    padding: 0px;
+  }
+  
+  /* Summary Section */
+  .sales-member-page .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  /* Summary Section */
+.sales-member-page .summary-box {
+    display: flex;
+    justify-content: space-around; /* Atur jarak antar elemen */
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at 0% 50.56%, #0B9444 0%, #096630 54.4%, #073F1F 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    color: white;
+  }
+  
+  .sales-member-page .summary-item {
+    flex: 1; /* Semua item memiliki lebar yang sama */
+  }
+  
+  .sales-member-page .summary-item h3 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  .sales-member-page .summary-item p {
+    font-size: 0.75rem;
+    margin: 0;
+    color: white;
+  }
+  
+  
+  /* Filter Buttons */
+  .sales-member-page .filter-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .sales-member-page .filter-button {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .sales-member-page .filter-button.active {
+    background-color: #16a34a;
+    color: white;
+  }
+  
+  /* Member List */
+  .sales-member-page .member-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .sales-member-page .member-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    cursor: pointer; /* Make entire item clickable */
+  }
+  
+  .sales-member-page .member-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    overflow: hidden;
+  }
+
+  .sales-member-page .member-icon img {
+    width: 24px; /* Ukuran ikon gambar */
+    height: 24px;
+    filter:invert(1); /* Membalikkan warna ikon */
+  }
+  
+  .sales-member-page .member-icon.valid {
+    background-color: #22c55e;
+    color: white;
+  }
+  
+  .sales-member-page .member-icon.invalid {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .sales-member-page .member-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .sales-member-page .member-info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  /* Member Action (Check/Pending Icon) */
+.sales-member-page .member-action {
+    position: absolute;
+    right: 16px; /* Jarak dari tepi kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px; /* Lebar box */
+    height: 25px; /* Tinggi box */
+    border-radius: 20%; /* Membuat rounded box */
+    background-color: #f3f4f6; /* Warna latar belakang box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out; /* Efek transisi */
+  }
+  
+  .sales-member-page .member-action img {
+    width: 15px; /* Ukuran ikon di dalam box */
+    height: 15px;
+  }
+  
+  .sales-member-page .member-action:hover img {
+    transform: scale(1.1); /* Sedikit perbesar ikon saat hover */
+  }
+  
+  /* Parent Positioning for Relative Alignment */
+  .sales-member-page .member-item {
+    position: relative; /* Harus memiliki posisi relative agar absolute bekerja */
+  }
+
+ /* Member Detail Page */
+ /* Sales Member Detail Styles */
+.sales-member-detail-page {
+  display: none; /* Default state is hidden */
+  padding: 16px;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+  margin-left: 16px;
+}
+
+.back-button {
+  font-size: 1.5rem;
+  color: #111827;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Member Info Summary */
+.member-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.member-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.member-info {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.member-info h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+  color: #111827;
+}
+
+.member-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 4px 0 0 0;
+}
+
+.status-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Form Section */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.form-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+
+
+
+  
+  

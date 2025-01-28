@@ -1,0 +1,93 @@
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 16px;
+    border-right: 1px solid #E5E7EB;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+  
+  .sidebar .brand-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #16A34A;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-section {
+    margin-bottom: 24px; /* Added margin for section separation */
+  }
+  
+  .menu-section + .menu-section {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  
+  
+  .menu-section-title {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  
+  .menu-item {
+    padding: 12px 16px; /* Increased padding for larger boxes */
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #E5E7EB;
+  }
+  
+  .menu-item.active {
+    background-color: #16A34A;
+  }
+  
+  .menu-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .menu-icon {
+    width: 24px; /* Increased icon size */
+    height: 24px; /* Increased icon size */
+  }
+  
+  .menu-item.active .menu-icon {
+    filter: brightness(0) invert(1); /* Change icon to white */
+  }
+  
+  .menu-item.active span {
+    color: #FFFFFF; /* Change text to white */
+  }
+  
+ 

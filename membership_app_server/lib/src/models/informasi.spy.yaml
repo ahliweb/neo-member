@@ -1,0 +1,7 @@
+class: Informasi
+table: informasi
+fields:
+  tujuan: String
+  tanggalDibuat: DateTime
+  judul: String
+  deskripsi: String

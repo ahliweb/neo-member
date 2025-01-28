@@ -1,0 +1,11 @@
+class: Sales
+table: sales
+fields:
+  namaSales: String
+  nik: String
+  pelanggan: List<Member>?, relation
+  noWhatsapp: String
+indexes:
+  nik_sales_idx:
+    fields: nik
+    unique: true

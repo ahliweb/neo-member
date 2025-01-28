@@ -1,0 +1,173 @@
+/* Namespace for Database Page */
+.database-page {
+  padding: 24px;
+}
+
+/* Search Bar Styles */
+.database-page .header-with-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.database-page .search-input {
+  width: 250px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.database-page .search-input:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0px 0px 4px rgba(22, 163, 74, 0.5);
+}
+
+/* Database Table Styles */
+.database-page .database-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.database-page .database-table th,
+.database-page .database-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.database-page .database-table th {
+  font-weight: 600;
+  color: #333333;
+  background-color: #f3f4f6;
+}
+
+.database-page .database-table td {
+  color: #374151;
+  background-color: white;
+}
+
+/* KTP Image Styles */
+.database-page .ktp-image {
+  width: 80px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Lihat Bukti Button */
+.database-page .lihat-bukti-button {
+  padding: 8px 16px;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.database-page .lihat-bukti-button:hover {
+  background-color: #059669;
+}
+
+.popup-container {
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  flex-direction: column
+}
+
+.popup-content {
+  position: relative;
+  border-radius: 8px;
+  /* padding: 16px; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popup-ktp-image {
+  backdrop-filter: blur(5px);
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Carousel Styles */
+.carousel-image-container img {
+  max-width: 1000px;
+  max-height: 600px;
+}
+
+.carousel-image-container {
+  margin-bottom: 16px; /* Beri jarak antara gambar utama dan thumbnail */
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail:hover {
+  border-color: #16a34a;
+}
+
+.thumbnail.active {
+  border-color: #16a34a;
+  box-shadow: 0 0 4px rgba(22, 163, 74, 0.5); /* Highlight gambar aktif */
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: white;
+  background: #16a34a;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: -20px;
+}
+
+.carousel-next {
+  right: -20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+

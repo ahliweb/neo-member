@@ -1,0 +1,124 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "database_member"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "database_member",
+        "dartName": "DatabaseMember",
+        "module": "membership_app",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 6,
+            "isNullable": false,
+            "columnDefault": "nextval('database_member_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "buktiPembayaran",
+            "columnType": 8,
+            "isNullable": true,
+            "dartType": "List<String>?"
+          },
+          {
+            "name": "idPembayaran",
+            "columnType": 6,
+            "isNullable": false,
+            "dartType": "int"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "constraintName": "database_member_fk_0",
+            "columns": [
+              "idPembayaran"
+            ],
+            "referenceTable": "member",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "indexes": [
+          {
+            "indexName": "database_member_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "member",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [],
+        "deleteIndexes": [
+          "user_address_unique_idx"
+        ],
+        "addForeignKeys": [
+          {
+            "constraintName": "member_fk_0",
+            "columns": [
+              "_salesPelangganSalesId"
+            ],
+            "referenceTable": "sales",
+            "referenceTableSchema": "public",
+            "referenceColumns": [
+              "id"
+            ],
+            "onUpdate": 3,
+            "onDelete": 3
+          }
+        ],
+        "deleteForeignKeys": [
+          "member_fk_1",
+          "member_fk_0"
+        ],
+        "warnings": [
+          {
+            "type": "tableDropped",
+            "message": "One or more columns are added to table \"database_member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+            "table": "database_member",
+            "columns": [
+              "idPembayaran"
+            ],
+            "destrucive": true
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"database_member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "database_member",
+      "columns": [
+        "idPembayaran"
+      ],
+      "destrucive": true
+    }
+  ],
+  "migrationApiVersion": 1
+}

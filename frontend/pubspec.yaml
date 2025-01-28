@@ -1,0 +1,29 @@
+name: frontend
+description: A new jaspr project.
+version: 0.0.1
+publish_to: none
+
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  html : any
+  universal_html: ^2.2.4
+  http: any
+  jaspr: ^0.16.2
+  jaspr_router: ^0.6.0
+  js: ^0.6.5
+  membership_app_client:
+    path: ../membership_app_client
+
+dev_dependencies:
+  build_runner: ^2.4.0
+  jaspr_web_compilers: ^4.1.0
+  jaspr_builder: ^0.16.2
+  jaspr_lints: ^0.1.2
+  lints: ^3.0.0
+
+jaspr:
+  mode: static
+

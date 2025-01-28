@@ -1,0 +1,334 @@
+{
+  "actions": [
+    {
+      "type": "deleteTable",
+      "deleteTable": "database_member"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "database_member",
+        "dartName": "DatabaseMember",
+        "module": "membership_app",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 6,
+            "isNullable": false,
+            "columnDefault": "nextval('database_member_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "nikPelanggan",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "buktiPembayaran",
+            "columnType": 8,
+            "isNullable": true,
+            "dartType": "List<String>?"
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "indexName": "database_member_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "deleteTable",
+      "deleteTable": "member"
+    },
+    {
+      "type": "createTable",
+      "createTable": {
+        "name": "member",
+        "dartName": "Member",
+        "module": "membership_app",
+        "schema": "public",
+        "columns": [
+          {
+            "name": "id",
+            "columnType": 6,
+            "isNullable": false,
+            "columnDefault": "nextval('member_id_seq'::regclass)",
+            "dartType": "int?"
+          },
+          {
+            "name": "namaPelanggan",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "noWhatsapp",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "nik",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "alamatKtp",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "kelurahan",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "kecamatan",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "kabupaten",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "provinsi",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "status",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "ktp",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "name": "nikSales",
+            "columnType": 0,
+            "isNullable": false,
+            "dartType": "String"
+          },
+          {
+            "name": "tanggalDibuat",
+            "columnType": 4,
+            "isNullable": false,
+            "dartType": "DateTime"
+          }
+        ],
+        "foreignKeys": [],
+        "indexes": [
+          {
+            "indexName": "member_pkey",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "id"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": true
+          },
+          {
+            "indexName": "nik_pelanggan_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "nik"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "managed": true
+      }
+    },
+    {
+      "type": "alterTable",
+      "alterTable": {
+        "name": "sales",
+        "schema": "public",
+        "addColumns": [],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [
+          {
+            "indexName": "nik_sales_idx",
+            "elements": [
+              {
+                "type": 0,
+                "definition": "nik"
+              }
+            ],
+            "type": "btree",
+            "isUnique": true,
+            "isPrimary": false
+          }
+        ],
+        "deleteIndexes": [],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": [
+          {
+            "type": "columnDropped",
+            "message": "Column \"idMember\" of table \"database_member\" will be dropped.",
+            "table": "database_member",
+            "columns": [
+              "idMember"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"ktp\" of table \"database_member\" will be dropped.",
+            "table": "database_member",
+            "columns": [
+              "ktp"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "tableDropped",
+            "message": "One or more columns are added to table \"database_member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+            "table": "database_member",
+            "columns": [
+              "nikPelanggan"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "columnDropped",
+            "message": "Column \"idSales\" of table \"member\" will be dropped.",
+            "table": "member",
+            "columns": [
+              "idSales"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"nik_pelanggan_idx\" is added to table \"member\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "member",
+            "columns": [
+              "nik"
+            ],
+            "destrucive": false
+          },
+          {
+            "type": "tableDropped",
+            "message": "One or more columns are added to table \"member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+            "table": "member",
+            "columns": [
+              "nikSales"
+            ],
+            "destrucive": true
+          },
+          {
+            "type": "uniqueIndexCreated",
+            "message": "Unique index \"nik_sales_idx\" is added to table \"sales\". If there are existing rows with duplicate values, this migration will fail.",
+            "table": "sales",
+            "columns": [
+              "nik"
+            ],
+            "destrucive": false
+          }
+        ]
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "columnDropped",
+      "message": "Column \"idMember\" of table \"database_member\" will be dropped.",
+      "table": "database_member",
+      "columns": [
+        "idMember"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"ktp\" of table \"database_member\" will be dropped.",
+      "table": "database_member",
+      "columns": [
+        "ktp"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"database_member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "database_member",
+      "columns": [
+        "nikPelanggan"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "columnDropped",
+      "message": "Column \"idSales\" of table \"member\" will be dropped.",
+      "table": "member",
+      "columns": [
+        "idSales"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"nik_pelanggan_idx\" is added to table \"member\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "member",
+      "columns": [
+        "nik"
+      ],
+      "destrucive": false
+    },
+    {
+      "type": "tableDropped",
+      "message": "One or more columns are added to table \"member\" which cannot be added in a table migration. The complete table will be deleted and recreated.",
+      "table": "member",
+      "columns": [
+        "nikSales"
+      ],
+      "destrucive": true
+    },
+    {
+      "type": "uniqueIndexCreated",
+      "message": "Unique index \"nik_sales_idx\" is added to table \"sales\". If there are existing rows with duplicate values, this migration will fail.",
+      "table": "sales",
+      "columns": [
+        "nik"
+      ],
+      "destrucive": false
+    }
+  ],
+  "migrationApiVersion": 1
+}

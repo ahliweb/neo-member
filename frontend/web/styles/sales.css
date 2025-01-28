@@ -1,0 +1,285 @@
+/* General Styles for Sales Page */
+.sales-page {
+  padding: 24px;
+}
+
+.sales-page .header-with-search {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.sales-page .search-input {
+  width: 250px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.sales-page .search-input:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0px 0px 4px rgba(22, 163, 74, 0.5);
+}
+
+/* Sales Table Styles */
+.sales-page .sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  table-layout: fixed;
+}
+
+.sales-page .sales-table th,
+.sales-page .sales-table td {
+  text-align: left;
+  padding: 18px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sales-page .sales-table th {
+  font-weight: 600;
+  color: #333333;
+  background-color: #F3F4F6;
+}
+
+.sales-page .sales-table td {
+  color: #374151;
+  background-color: white;
+  width: 25%;
+}
+
+/* Action Buttons */
+.sales-table .action-button {
+  padding: 6px 8px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.sales-table .action-button.edit {
+  background-color: #10b981;
+  color: white;
+}
+
+.sales-table .action-button.edit:hover {
+  background-color: #059669;
+}
+
+.sales-table .action-button.delete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.sales-table .action-button.delete:hover {
+  background-color: #dc2626;
+}
+.sales-table .action-button.view-members {
+  background-color: #F59E0B;
+  color: white;
+}
+
+.sales-table .action-button.action-button.view-members:hover {
+  background-color: #D97706;
+}
+
+/* Add Button */
+.sales-page .add-button {
+  position: inherit;
+  right: 16px;
+  bottom: 16px;
+  padding: 12px 16px;
+  background-color: #16a34a;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sales-page .add-button:hover {
+  background-color: #15803d;
+}
+
+.sales-page .close-button {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.sales-page .submit-button {
+  padding: 12px 16px;
+  width: 100%;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.sales-page .submit-button:hover {
+  background-color: #15803d;
+}
+
+.sales-page .confirm-button {
+  background-color: #ef4444;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.sales-page .confirm-button:hover {
+  background-color: #d03a3a;
+}
+
+.sales-page .cancel-button {
+  padding: 12px 16px;
+  background-color: #E5E7EB;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sales-page .cancel-button:hover {
+  background-color: #D1D5DB;
+}
+
+/* Pagination Buttons */
+.sales-page .pagination-container {
+  display: flex;
+  justify-content: left;
+  gap: 8px;
+}
+
+.sales-page .pagination-button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.sales-page .pagination-button:hover {
+  background-color: #f3f4f6;
+}
+
+/*sales form*/
+
+/* Overlay for backdrop blur */
+.delete-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Darken the background */
+  backdrop-filter: blur(8px); /* Blur effect */
+  /* display: none; Initially hidden */
+  justify-content: center;
+  align-items: center;
+   /* Ensure it appears above all content */
+}
+
+/* Show the overlay when active */
+.sales-page[data-view='delete'] .delete-popup-overlay {
+  display: block; /* Show overlay only in delete view */
+}
+
+/* Popup styling */
+.delete-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1100; /* Ensure it appears above the blur overlay */
+}
+.sales-form {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sales-form .form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.sales-form .form-input {
+  width: 100%; /* Input akan mengambil lebar penuh container */
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+  box-sizing: border-box; /* Sertakan padding dan border dalam lebar elemen */
+}
+
+.sales-form .form-input:focus {
+  border-color: #16A34A;
+  outline: none;
+  box-shadow: 0px 0px 4px rgba(22, 163, 74, 0.5);
+}
+
+.sales-form .form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sales-form .form-group {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.sales-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+
+
+.popup-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sales-members-list {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}

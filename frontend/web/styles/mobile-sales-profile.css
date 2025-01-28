@@ -1,0 +1,61 @@
+/* Sales Profile Page Styles */
+.sales-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+}
+
+.sales-profile-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.sales-profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.sales-profile-detail .profile-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sales-profile-detail .profile-row:last-child {
+  border-bottom: none;
+}
+
+.sales-profile-page .label {
+  font-weight: bold;
+  color: #374151;
+}
+
+.sales-profile-page.value {
+  color: #6b7280;
+}
+
+/* Logout Button */
+.sales-profile-page .logout-button {
+  padding: 12px 16px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.sales-profile-page .logout-button:hover {
+  background-color: #dc2626;
+}

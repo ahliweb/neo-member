@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  # Development services
+  postgres:
+    image: postgres:16.3
+    ports:
+      - '8090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: membership_app
+      POSTGRES_PASSWORD: "8BxrpqdnVOlppzzvEG5zTavRE91NTtBQ"
+    volumes:
+      - membership_app_data:/var/lib/postgresql/data
+    profiles:
+      - '' # Default profile
+      - dev
+  redis:
+    image: redis:6.2.6
+    ports:
+      - '8091:6379'
+    command: redis-server --requirepass "2eYJNlSl7btab57XDUqBQ6okKBNg-doo"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    profiles:
+      - '' # Default profile
+      - dev
+
+  # Test services
+  postgres_test:
+    image: postgres:16.3
+    ports:
+      - '9090:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: membership_app_test
+      POSTGRES_PASSWORD: "uWfqB96ezqacX2oHWRjGdAfIXSmiqNhS"
+    volumes:
+      - membership_app_test_data:/var/lib/postgresql/data
+    profiles:
+      - '' # Default profile
+      - test
+  redis_test:
+    image: redis:6.2.6
+    ports:
+      - '9091:6379'
+    command: redis-server --requirepass "IL6bVWU-9ZMzqMA7UkYWkPmGXRK1COLo"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    profiles:
+      - '' # Default profile
+      - test
+
+volumes:
+  membership_app_data:
+  membership_app_test_data:

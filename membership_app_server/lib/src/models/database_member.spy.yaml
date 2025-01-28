@@ -1,0 +1,6 @@
+class: DatabaseMember
+table: database_member
+fields:
+  buktiPembayaran: List<String>?
+  idPembayaran: int
+  nikPelanggan: Member?, relation(field=idPembayaran)

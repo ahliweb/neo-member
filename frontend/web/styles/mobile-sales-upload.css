@@ -1,0 +1,137 @@
+/* General Styles for Sales Upload Page */
+.upload-page {
+    padding: 24px;
+    background-color: #f9fafb;
+  }
+  
+  .tab-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .tab-button {
+    padding: 12px 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-button.active {
+    background-color: #16a34a;
+    color: white;
+  }
+  
+  
+  .tab-content {
+    margin-top: 24px;
+  }
+  
+  .upload-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .upload-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  .upload-card img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+  }
+  
+  .upload-card p {
+    font-size: 1rem;
+    color: #374151;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .form-container label {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+  
+  .form-container select,
+  .form-container textarea {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form-container textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .submit-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #16a34a;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #059669;
+  }
+
+  .upload-page[data-tab='0'] .tab-content:nth-child(1),
+  .upload-page[data-tab='1'] .tab-content:nth-child(2) {
+    display: block;
+  }
+
+  .upload-page[data-tab='0'] .tab-content:nth-child(2),
+  .upload-page[data-tab='1'] .tab-content:nth-child(1) {
+    display: none;
+  }
+
+  .choices {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    display: flex;
+    font-size: 16px;
+    flex-direction: column;
+}
+.choices[data-type*=select-one] {
+  cursor: pointer;
+}
+.choices__inner {
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  background-color: white;
+  padding: 7.5px 7.5px 3.75px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  min-height: 44px;
+  overflow: hidden;
+}
+.choices__list {
+  margin: 8px;
+  padding-left: 0;
+  list-style: none;
+}
