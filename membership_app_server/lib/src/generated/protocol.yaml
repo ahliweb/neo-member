@@ -1,6 +1,12 @@
+dashboard:
+  - getTotalMembers:
+  - getValidMembers:
+  - getSalesCount:
+  - getMemberChartData:
 databaseMember:
   - getAllDatabaseMembers:
   - getDatabaseMemberById:
+  - getDatabaseMemberByPelangganId:
   - addDatabaseMember:
   - updateDatabaseMember:
   - deleteDatabaseMember:

@@ -30,6 +30,7 @@ abstract class Member implements _i1.SerializableModel {
     this.kecamatanDomisili,
     this.kabupatenDomisili,
     this.provinsiDomisili,
+    this.salesPelangganSalesId,
   });
 
   factory Member({
@@ -50,6 +51,7 @@ abstract class Member implements _i1.SerializableModel {
     String? kecamatanDomisili,
     String? kabupatenDomisili,
     String? provinsiDomisili,
+    int? salesPelangganSalesId,
   }) = _MemberImpl;
 
   factory Member.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -72,6 +74,7 @@ abstract class Member implements _i1.SerializableModel {
       kecamatanDomisili: jsonSerialization['kecamatanDomisili'] as String?,
       kabupatenDomisili: jsonSerialization['kabupatenDomisili'] as String?,
       provinsiDomisili: jsonSerialization['provinsiDomisili'] as String?,
+      salesPelangganSalesId: jsonSerialization['salesPelangganSalesId'] as int?,
     );
   }
 
@@ -112,7 +115,7 @@ abstract class Member implements _i1.SerializableModel {
 
   String? provinsiDomisili;
 
-  var salesName;
+  int? salesPelangganSalesId;
 
   Member copyWith({
     int? id,
@@ -132,6 +135,7 @@ abstract class Member implements _i1.SerializableModel {
     String? kecamatanDomisili,
     String? kabupatenDomisili,
     String? provinsiDomisili,
+    int? salesPelangganSalesId,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -153,6 +157,8 @@ abstract class Member implements _i1.SerializableModel {
       if (kecamatanDomisili != null) 'kecamatanDomisili': kecamatanDomisili,
       if (kabupatenDomisili != null) 'kabupatenDomisili': kabupatenDomisili,
       if (provinsiDomisili != null) 'provinsiDomisili': provinsiDomisili,
+      if (salesPelangganSalesId != null)
+        'salesPelangganSalesId': salesPelangganSalesId,
     };
   }
 
@@ -183,6 +189,7 @@ class _MemberImpl extends Member {
     String? kecamatanDomisili,
     String? kabupatenDomisili,
     String? provinsiDomisili,
+    int? salesPelangganSalesId,
   }) : super._(
           id: id,
           namaPelanggan: namaPelanggan,
@@ -201,6 +208,7 @@ class _MemberImpl extends Member {
           kecamatanDomisili: kecamatanDomisili,
           kabupatenDomisili: kabupatenDomisili,
           provinsiDomisili: provinsiDomisili,
+          salesPelangganSalesId: salesPelangganSalesId,
         );
 
   @override
@@ -222,6 +230,7 @@ class _MemberImpl extends Member {
     Object? kecamatanDomisili = _Undefined,
     Object? kabupatenDomisili = _Undefined,
     Object? provinsiDomisili = _Undefined,
+    Object? salesPelangganSalesId = _Undefined,
   }) {
     return Member(
       id: id is int? ? id : this.id,
@@ -250,6 +259,9 @@ class _MemberImpl extends Member {
       provinsiDomisili: provinsiDomisili is String?
           ? provinsiDomisili
           : this.provinsiDomisili,
+      salesPelangganSalesId: salesPelangganSalesId is int?
+          ? salesPelangganSalesId
+          : this.salesPelangganSalesId,
     );
   }
 }

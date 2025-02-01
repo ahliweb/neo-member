@@ -5,9 +5,20 @@ import '../generated/member.dart'; // Untuk relasi Member
 class SalesEndpoint extends Endpoint {
   // Fetch all sales
   Future<List<Sales>> getAllSales(Session session) async {
-    session.log('getAllSales called');
-    return await Sales.db.find(session);
+    // Ambil semua data Sales
+    final salesList = await Sales.db.find(session);
+
+    // Untuk setiap Sales, temukan member berdasarkan salesPelangganSalesId
+    for (final sales in salesList) {
+      sales.pelanggan = await Member.db.find(
+        session,
+        where: (m) => m.salesPelangganSalesId.equals(sales.id),
+      );
+    }
+
+    return salesList;
   }
+
 
   // Fetch a single sales by ID
   Future<Sales?> getSalesById(Session session, int id) async {
@@ -53,11 +64,11 @@ class SalesEndpoint extends Endpoint {
   // Fetch members related to a sales
   Future<List<Member>> getSalesMembers(Session session, int salesId) async {
     try {
-      final sales = await Sales.db.findById(session, salesId);
-      if (sales == null) {
-        return [];
-      }
-      return sales.pelanggan ?? [];
+      // Temukan semua Member yang terkait dengan salesId tertentu
+      return await Member.db.find(
+        session,
+        where: (m) => m.salesPelangganSalesId.equals(salesId),
+      );
     } catch (e, stack) {
       session.log('Error fetching sales members: $e');
       session.log(stack.toString());
@@ -65,26 +76,31 @@ class SalesEndpoint extends Endpoint {
     }
   }
 
+
   // Add a member to sales
   Future<bool> addMemberToSales(Session session, int salesId, Member member) async {
-    try {
-      final sales = await Sales.db.findById(session, salesId);
-      if (sales == null) {
-        return false;
-      }
-
-      final updatedPelanggan = sales.pelanggan ?? [];
-      updatedPelanggan.add(member);
-
-      final updatedSales = sales.copyWith(pelanggan: updatedPelanggan);
-      await Sales.db.updateRow(session, updatedSales);
-      return true;
-    } catch (e, stack) {
-      session.log('Error adding member to sales: $e');
-      session.log(stack.toString());
+  try {
+    // Temukan objek Sales
+    final sales = await Sales.db.findById(session, salesId);
+    if (sales == null) {
       return false;
     }
+
+    // Tambahkan Member ke dalam relasi pelanggan
+    final updatedPelanggan = sales.pelanggan ?? [];
+    updatedPelanggan.add(member.copyWith(salesPelangganSalesId: salesId));
+
+    // Perbarui objek Sales dengan relasi pelanggan baru
+    final updatedSales = sales.copyWith(pelanggan: updatedPelanggan);
+    await Sales.db.updateRow(session, updatedSales);
+    return true;
+  } catch (e, stack) {
+    session.log('Error adding member to sales: $e');
+    session.log(stack.toString());
+    return false;
   }
+}
+
 
   // Remove a member from sales
   Future<bool> removeMemberFromSales(Session session, int salesId, int memberId) async {

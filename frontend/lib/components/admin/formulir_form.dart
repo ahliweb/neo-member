@@ -44,9 +44,9 @@ class _FormulirFormState extends State<FormulirForm> {
   // );
 
   // KTP
-  String? filePreviewUrl;
-  html.File? newKtpFile;
-  bool isUploading = false;
+  // String? filePreviewUrl;
+  // html.File? newKtpFile;
+  // bool isUploading = false;
 
   // Data wilayah KTP
   List<Map<String, String>> provinces = [];
@@ -294,16 +294,18 @@ class _FormulirFormState extends State<FormulirForm> {
       component.showNotification('Pilih Sales terlebih dahulu.', false);
       return;
     }
+    print('Selected Sales ID: $selectedSalesId');
 
     // Lanjut panggil onSubmit
     component.onSubmit(newMember, selectedSalesId);
-    setState(() => isUploading = false);
+    // setState(() => isUploading = false);
   }
 
   // ================== BUILD ================
   @override
   Iterable<Component> build(BuildContext context) sync* {
     yield div(classes: 'verification-container', [
+      h3([text('Tambah Formulir')]),
       // div(classes: 'verification-ktp', [
       //   if (filePreviewUrl != null)
       //     img(
@@ -597,9 +599,6 @@ class _FormulirFormState extends State<FormulirForm> {
           ),
         ]),
 
-        // TODO: Tambahkan dropdown & logic alamat KTP / Domisili (Mirip di atas) 
-        // Minimalkan contoh ini agar ringkas
-
         // Tombol
         button(
           classes: 'verification-button verify',
@@ -614,11 +613,11 @@ class _FormulirFormState extends State<FormulirForm> {
       ]),
     ]);
 
-    if (isUploading) {
-      yield div(classes: 'loading-overlay', [
-        div([],classes: 'loading-spinner'),
-        div(classes: 'loading-text', [text('Mengunggah, mohon tunggu...')]),
-      ]);
-    }
+    // if (isUploading) {
+    //   yield div(classes: 'loading-overlay', [
+    //     div([],classes: 'loading-spinner'),
+    //     div(classes: 'loading-text', [text('Mengunggah, mohon tunggu...')]),
+    //   ]);
+    // }
   }
 }

@@ -19,6 +19,7 @@ fields:
   kecamatanDomisili: String?
   kabupatenDomisili: String?
   provinsiDomisili: String?
+  salesPelangganSalesId: int?, relation(parent=sales)
 indexes:
   nik_pelanggan_idx:
     fields: nik

@@ -10,34 +10,28 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'member.dart' as _i2;
 
 abstract class DatabaseMember implements _i1.SerializableModel {
   DatabaseMember._({
     this.id,
-    this.buktiPembayaran,
-    required this.idPembayaran,
-    this.nikPelanggan,
+    required this.buktiPembayaran,
+    required this.keterangan,
+    required this.pelangganId,
   });
 
   factory DatabaseMember({
     int? id,
-    List<String>? buktiPembayaran,
-    required int idPembayaran,
-    _i2.Member? nikPelanggan,
+    required String buktiPembayaran,
+    required String keterangan,
+    required int pelangganId,
   }) = _DatabaseMemberImpl;
 
   factory DatabaseMember.fromJson(Map<String, dynamic> jsonSerialization) {
     return DatabaseMember(
       id: jsonSerialization['id'] as int?,
-      buktiPembayaran: (jsonSerialization['buktiPembayaran'] as List?)
-          ?.map((e) => e as String)
-          .toList(),
-      idPembayaran: jsonSerialization['idPembayaran'] as int,
-      nikPelanggan: jsonSerialization['nikPelanggan'] == null
-          ? null
-          : _i2.Member.fromJson(
-              (jsonSerialization['nikPelanggan'] as Map<String, dynamic>)),
+      buktiPembayaran: jsonSerialization['buktiPembayaran'] as String,
+      keterangan: jsonSerialization['keterangan'] as String,
+      pelangganId: jsonSerialization['pelangganId'] as int,
     );
   }
 
@@ -46,25 +40,25 @@ abstract class DatabaseMember implements _i1.SerializableModel {
   /// the id will be null.
   int? id;
 
-  List<String>? buktiPembayaran;
+  String buktiPembayaran;
 
-  int idPembayaran;
+  String keterangan;
 
-  _i2.Member? nikPelanggan;
+  int pelangganId;
 
   DatabaseMember copyWith({
     int? id,
-    List<String>? buktiPembayaran,
-    int? idPembayaran,
-    _i2.Member? nikPelanggan,
+    String? buktiPembayaran,
+    String? keterangan,
+    int? pelangganId,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      if (buktiPembayaran != null) 'buktiPembayaran': buktiPembayaran?.toJson(),
-      'idPembayaran': idPembayaran,
-      if (nikPelanggan != null) 'nikPelanggan': nikPelanggan?.toJson(),
+      'buktiPembayaran': buktiPembayaran,
+      'keterangan': keterangan,
+      'pelangganId': pelangganId,
     };
   }
 
@@ -79,32 +73,28 @@ class _Undefined {}
 class _DatabaseMemberImpl extends DatabaseMember {
   _DatabaseMemberImpl({
     int? id,
-    List<String>? buktiPembayaran,
-    required int idPembayaran,
-    _i2.Member? nikPelanggan,
+    required String buktiPembayaran,
+    required String keterangan,
+    required int pelangganId,
   }) : super._(
           id: id,
           buktiPembayaran: buktiPembayaran,
-          idPembayaran: idPembayaran,
-          nikPelanggan: nikPelanggan,
+          keterangan: keterangan,
+          pelangganId: pelangganId,
         );
 
   @override
   DatabaseMember copyWith({
     Object? id = _Undefined,
-    Object? buktiPembayaran = _Undefined,
-    int? idPembayaran,
-    Object? nikPelanggan = _Undefined,
+    String? buktiPembayaran,
+    String? keterangan,
+    int? pelangganId,
   }) {
     return DatabaseMember(
       id: id is int? ? id : this.id,
-      buktiPembayaran: buktiPembayaran is List<String>?
-          ? buktiPembayaran
-          : this.buktiPembayaran?.map((e0) => e0).toList(),
-      idPembayaran: idPembayaran ?? this.idPembayaran,
-      nikPelanggan: nikPelanggan is _i2.Member?
-          ? nikPelanggan
-          : this.nikPelanggan?.copyWith(),
+      buktiPembayaran: buktiPembayaran ?? this.buktiPembayaran,
+      keterangan: keterangan ?? this.keterangan,
+      pelangganId: pelangganId ?? this.pelangganId,
     );
   }
 }

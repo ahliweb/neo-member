@@ -1,6 +1,6 @@
 class: DatabaseMember
 table: database_member
 fields:
-  buktiPembayaran: List<String>?
-  idPembayaran: int
-  nikPelanggan: Member?, relation(field=idPembayaran)
+  buktiPembayaran: String  # Sekarang hanya menyimpan satu URL sebagai string
+  keterangan: String       # Menyimpan deskripsi/keterangan pembayaran
+  pelangganId: int, relation(parent=member)  # Relasi ke tabel Member berdasarkan ID

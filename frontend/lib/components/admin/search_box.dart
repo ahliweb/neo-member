@@ -23,11 +23,13 @@ class _SearchBoxComponentState extends State<SearchBoxComponent> {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'search-bar', [
+    yield div(classes: 'search-header', [
       input(
         [],
         onInput: handleSearch,
-        attributes: {'placeholder': 'Search...'},
+        type: InputType.text,
+        attributes: {'placeholder': 'Cari'},
+        classes: 'search-input',
       ),
     ]);
   }

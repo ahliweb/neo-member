@@ -17,6 +17,7 @@ class _MemberPageState extends State<MemberPage> {
 
   List<Member> memberList = [];
   List<Member> filteredList = [];
+  List<Sales> salesList = [];
   bool isLoading = true;
   bool isVerificationMode = false;
   Member? selectedMember;
@@ -91,8 +92,10 @@ class _MemberPageState extends State<MemberPage> {
 
     try {
       final data = await client.member.getAllMembers();
+      final fetchedSales = await client.sales.getAllSales();
       setState(() {
         memberList = data;
+        salesList = fetchedSales;
         filteredList = filterMembers(data);
         isLoading = false;
       });
@@ -191,6 +194,7 @@ class _MemberPageState extends State<MemberPage> {
         else if (isVerificationMode && selectedMember != null)
           MemberVerificationComponent(
             member: selectedMember!,
+            salesList: salesList, // Pass daftar sales ke komponen
             onVerify: verifyMember,
             onCancel: goToList,
             showNotification: showNotification, // Tambahkan ini

@@ -166,12 +166,18 @@ class Protocol extends _i1.SerializationManagerServer {
         ),
         _i2.ColumnDefinition(
           name: 'buktiPembayaran',
-          columnType: _i2.ColumnType.json,
-          isNullable: true,
-          dartType: 'List<String>?',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
         ),
         _i2.ColumnDefinition(
-          name: 'idPembayaran',
+          name: 'keterangan',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'pelangganId',
           columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int',
@@ -180,7 +186,7 @@ class Protocol extends _i1.SerializationManagerServer {
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'database_member_fk_0',
-          columns: ['idPembayaran'],
+          columns: ['pelangganId'],
           referenceTable: 'member',
           referenceTableSchema: 'public',
           referenceColumns: ['id'],
@@ -372,6 +378,12 @@ class Protocol extends _i1.SerializationManagerServer {
           dartType: 'String?',
         ),
         _i2.ColumnDefinition(
+          name: 'salesPelangganSalesId',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: true,
+          dartType: 'int?',
+        ),
+        _i2.ColumnDefinition(
           name: '_salesPelangganSalesId',
           columnType: _i2.ColumnType.bigint,
           isNullable: true,
@@ -381,6 +393,16 @@ class Protocol extends _i1.SerializationManagerServer {
       foreignKeys: [
         _i2.ForeignKeyDefinition(
           constraintName: 'member_fk_0',
+          columns: ['salesPelangganSalesId'],
+          referenceTable: 'sales',
+          referenceTableSchema: 'public',
+          referenceColumns: ['id'],
+          onUpdate: _i2.ForeignKeyAction.noAction,
+          onDelete: _i2.ForeignKeyAction.noAction,
+          matchType: null,
+        ),
+        _i2.ForeignKeyDefinition(
+          constraintName: 'member_fk_1',
           columns: ['_salesPelangganSalesId'],
           referenceTable: 'sales',
           referenceTableSchema: 'public',
@@ -388,7 +410,7 @@ class Protocol extends _i1.SerializationManagerServer {
           onUpdate: _i2.ForeignKeyAction.noAction,
           onDelete: _i2.ForeignKeyAction.noAction,
           matchType: null,
-        )
+        ),
       ],
       indexes: [
         _i2.IndexDefinition(
@@ -534,15 +556,15 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i9.Sales?>()) {
       return (data != null ? _i9.Sales.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
     if (t == _i1.getType<List<_i8.Member>?>()) {
       return (data != null
           ? (data as List).map((e) => deserialize<_i8.Member>(e)).toList()
           : null) as dynamic;
+    }
+    if (t == Map<String, int>) {
+      return (data as Map).map(
+              (k, v) => MapEntry(deserialize<String>(k), deserialize<int>(v)))
+          as dynamic;
     }
     if (t == List<_i10.DatabaseMember>) {
       return (data as List)

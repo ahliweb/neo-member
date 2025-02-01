@@ -10,35 +10,29 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'member.dart' as _i2;
 
 abstract class DatabaseMember
     implements _i1.TableRow, _i1.ProtocolSerialization {
   DatabaseMember._({
     this.id,
-    this.buktiPembayaran,
-    required this.idPembayaran,
-    this.nikPelanggan,
+    required this.buktiPembayaran,
+    required this.keterangan,
+    required this.pelangganId,
   });
 
   factory DatabaseMember({
     int? id,
-    List<String>? buktiPembayaran,
-    required int idPembayaran,
-    _i2.Member? nikPelanggan,
+    required String buktiPembayaran,
+    required String keterangan,
+    required int pelangganId,
   }) = _DatabaseMemberImpl;
 
   factory DatabaseMember.fromJson(Map<String, dynamic> jsonSerialization) {
     return DatabaseMember(
       id: jsonSerialization['id'] as int?,
-      buktiPembayaran: (jsonSerialization['buktiPembayaran'] as List?)
-          ?.map((e) => e as String)
-          .toList(),
-      idPembayaran: jsonSerialization['idPembayaran'] as int,
-      nikPelanggan: jsonSerialization['nikPelanggan'] == null
-          ? null
-          : _i2.Member.fromJson(
-              (jsonSerialization['nikPelanggan'] as Map<String, dynamic>)),
+      buktiPembayaran: jsonSerialization['buktiPembayaran'] as String,
+      keterangan: jsonSerialization['keterangan'] as String,
+      pelangganId: jsonSerialization['pelangganId'] as int,
     );
   }
 
@@ -49,28 +43,28 @@ abstract class DatabaseMember
   @override
   int? id;
 
-  List<String>? buktiPembayaran;
+  String buktiPembayaran;
 
-  int idPembayaran;
+  String keterangan;
 
-  _i2.Member? nikPelanggan;
+  int pelangganId;
 
   @override
   _i1.Table get table => t;
 
   DatabaseMember copyWith({
     int? id,
-    List<String>? buktiPembayaran,
-    int? idPembayaran,
-    _i2.Member? nikPelanggan,
+    String? buktiPembayaran,
+    String? keterangan,
+    int? pelangganId,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      if (buktiPembayaran != null) 'buktiPembayaran': buktiPembayaran?.toJson(),
-      'idPembayaran': idPembayaran,
-      if (nikPelanggan != null) 'nikPelanggan': nikPelanggan?.toJson(),
+      'buktiPembayaran': buktiPembayaran,
+      'keterangan': keterangan,
+      'pelangganId': pelangganId,
     };
   }
 
@@ -78,15 +72,14 @@ abstract class DatabaseMember
   Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
-      if (buktiPembayaran != null) 'buktiPembayaran': buktiPembayaran?.toJson(),
-      'idPembayaran': idPembayaran,
-      if (nikPelanggan != null)
-        'nikPelanggan': nikPelanggan?.toJsonForProtocol(),
+      'buktiPembayaran': buktiPembayaran,
+      'keterangan': keterangan,
+      'pelangganId': pelangganId,
     };
   }
 
-  static DatabaseMemberInclude include({_i2.MemberInclude? nikPelanggan}) {
-    return DatabaseMemberInclude._(nikPelanggan: nikPelanggan);
+  static DatabaseMemberInclude include() {
+    return DatabaseMemberInclude._();
   }
 
   static DatabaseMemberIncludeList includeList({
@@ -120,32 +113,28 @@ class _Undefined {}
 class _DatabaseMemberImpl extends DatabaseMember {
   _DatabaseMemberImpl({
     int? id,
-    List<String>? buktiPembayaran,
-    required int idPembayaran,
-    _i2.Member? nikPelanggan,
+    required String buktiPembayaran,
+    required String keterangan,
+    required int pelangganId,
   }) : super._(
           id: id,
           buktiPembayaran: buktiPembayaran,
-          idPembayaran: idPembayaran,
-          nikPelanggan: nikPelanggan,
+          keterangan: keterangan,
+          pelangganId: pelangganId,
         );
 
   @override
   DatabaseMember copyWith({
     Object? id = _Undefined,
-    Object? buktiPembayaran = _Undefined,
-    int? idPembayaran,
-    Object? nikPelanggan = _Undefined,
+    String? buktiPembayaran,
+    String? keterangan,
+    int? pelangganId,
   }) {
     return DatabaseMember(
       id: id is int? ? id : this.id,
-      buktiPembayaran: buktiPembayaran is List<String>?
-          ? buktiPembayaran
-          : this.buktiPembayaran?.map((e0) => e0).toList(),
-      idPembayaran: idPembayaran ?? this.idPembayaran,
-      nikPelanggan: nikPelanggan is _i2.Member?
-          ? nikPelanggan
-          : this.nikPelanggan?.copyWith(),
+      buktiPembayaran: buktiPembayaran ?? this.buktiPembayaran,
+      keterangan: keterangan ?? this.keterangan,
+      pelangganId: pelangganId ?? this.pelangganId,
     );
   }
 }
@@ -153,60 +142,40 @@ class _DatabaseMemberImpl extends DatabaseMember {
 class DatabaseMemberTable extends _i1.Table {
   DatabaseMemberTable({super.tableRelation})
       : super(tableName: 'database_member') {
-    buktiPembayaran = _i1.ColumnSerializable(
+    buktiPembayaran = _i1.ColumnString(
       'buktiPembayaran',
       this,
     );
-    idPembayaran = _i1.ColumnInt(
-      'idPembayaran',
+    keterangan = _i1.ColumnString(
+      'keterangan',
+      this,
+    );
+    pelangganId = _i1.ColumnInt(
+      'pelangganId',
       this,
     );
   }
 
-  late final _i1.ColumnSerializable buktiPembayaran;
+  late final _i1.ColumnString buktiPembayaran;
 
-  late final _i1.ColumnInt idPembayaran;
+  late final _i1.ColumnString keterangan;
 
-  _i2.MemberTable? _nikPelanggan;
-
-  _i2.MemberTable get nikPelanggan {
-    if (_nikPelanggan != null) return _nikPelanggan!;
-    _nikPelanggan = _i1.createRelationTable(
-      relationFieldName: 'nikPelanggan',
-      field: DatabaseMember.t.idPembayaran,
-      foreignField: _i2.Member.t.id,
-      tableRelation: tableRelation,
-      createTable: (foreignTableRelation) =>
-          _i2.MemberTable(tableRelation: foreignTableRelation),
-    );
-    return _nikPelanggan!;
-  }
+  late final _i1.ColumnInt pelangganId;
 
   @override
   List<_i1.Column> get columns => [
         id,
         buktiPembayaran,
-        idPembayaran,
+        keterangan,
+        pelangganId,
       ];
-
-  @override
-  _i1.Table? getRelationTable(String relationField) {
-    if (relationField == 'nikPelanggan') {
-      return nikPelanggan;
-    }
-    return null;
-  }
 }
 
 class DatabaseMemberInclude extends _i1.IncludeObject {
-  DatabaseMemberInclude._({_i2.MemberInclude? nikPelanggan}) {
-    _nikPelanggan = nikPelanggan;
-  }
-
-  _i2.MemberInclude? _nikPelanggan;
+  DatabaseMemberInclude._();
 
   @override
-  Map<String, _i1.Include?> get includes => {'nikPelanggan': _nikPelanggan};
+  Map<String, _i1.Include?> get includes => {};
 
   @override
   _i1.Table get table => DatabaseMember.t;
@@ -235,8 +204,6 @@ class DatabaseMemberIncludeList extends _i1.IncludeList {
 class DatabaseMemberRepository {
   const DatabaseMemberRepository._();
 
-  final attachRow = const DatabaseMemberAttachRowRepository._();
-
   Future<List<DatabaseMember>> find(
     _i1.Session session, {
     _i1.WhereExpressionBuilder<DatabaseMemberTable>? where,
@@ -246,7 +213,6 @@ class DatabaseMemberRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<DatabaseMemberTable>? orderByList,
     _i1.Transaction? transaction,
-    DatabaseMemberInclude? include,
   }) async {
     return session.db.find<DatabaseMember>(
       where: where?.call(DatabaseMember.t),
@@ -256,7 +222,6 @@ class DatabaseMemberRepository {
       limit: limit,
       offset: offset,
       transaction: transaction,
-      include: include,
     );
   }
 
@@ -268,7 +233,6 @@ class DatabaseMemberRepository {
     bool orderDescending = false,
     _i1.OrderByListBuilder<DatabaseMemberTable>? orderByList,
     _i1.Transaction? transaction,
-    DatabaseMemberInclude? include,
   }) async {
     return session.db.findFirstRow<DatabaseMember>(
       where: where?.call(DatabaseMember.t),
@@ -277,7 +241,6 @@ class DatabaseMemberRepository {
       orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
-      include: include,
     );
   }
 
@@ -285,12 +248,10 @@ class DatabaseMemberRepository {
     _i1.Session session,
     int id, {
     _i1.Transaction? transaction,
-    DatabaseMemberInclude? include,
   }) async {
     return session.db.findById<DatabaseMember>(
       id,
       transaction: transaction,
-      include: include,
     );
   }
 
@@ -384,32 +345,6 @@ class DatabaseMemberRepository {
     return session.db.count<DatabaseMember>(
       where: where?.call(DatabaseMember.t),
       limit: limit,
-      transaction: transaction,
-    );
-  }
-}
-
-class DatabaseMemberAttachRowRepository {
-  const DatabaseMemberAttachRowRepository._();
-
-  Future<void> nikPelanggan(
-    _i1.Session session,
-    DatabaseMember databaseMember,
-    _i2.Member nikPelanggan, {
-    _i1.Transaction? transaction,
-  }) async {
-    if (databaseMember.id == null) {
-      throw ArgumentError.notNull('databaseMember.id');
-    }
-    if (nikPelanggan.id == null) {
-      throw ArgumentError.notNull('nikPelanggan.id');
-    }
-
-    var $databaseMember =
-        databaseMember.copyWith(idPembayaran: nikPelanggan.id);
-    await session.db.updateRow<DatabaseMember>(
-      $databaseMember,
-      columns: [DatabaseMember.t.idPembayaran],
       transaction: transaction,
     );
   }

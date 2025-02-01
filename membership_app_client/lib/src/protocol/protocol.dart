@@ -85,15 +85,15 @@ class Protocol extends _i1.SerializationManager {
     if (t == _i1.getType<_i8.Sales?>()) {
       return (data != null ? _i8.Sales.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<List<String>?>()) {
-      return (data != null
-          ? (data as List).map((e) => deserialize<String>(e)).toList()
-          : null) as dynamic;
-    }
     if (t == _i1.getType<List<_i7.Member>?>()) {
       return (data != null
           ? (data as List).map((e) => deserialize<_i7.Member>(e)).toList()
           : null) as dynamic;
+    }
+    if (t == Map<String, int>) {
+      return (data as Map).map(
+              (k, v) => MapEntry(deserialize<String>(k), deserialize<int>(v)))
+          as dynamic;
     }
     if (t == List<_i9.DatabaseMember>) {
       return (data as List)

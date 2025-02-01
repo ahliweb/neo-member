@@ -18,6 +18,48 @@ import 'package:membership_app_client/src/protocol/sales.dart' as _i6;
 import 'protocol.dart' as _i7;
 
 /// {@category Endpoint}
+class EndpointDashboard extends _i1.EndpointRef {
+  EndpointDashboard(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'dashboard';
+
+  _i2.Future<int> getTotalMembers() => caller.callServerEndpoint<int>(
+        'dashboard',
+        'getTotalMembers',
+        {},
+      );
+
+  _i2.Future<int> getValidMembers() => caller.callServerEndpoint<int>(
+        'dashboard',
+        'getValidMembers',
+        {},
+      );
+
+  _i2.Future<int> getSalesCount() => caller.callServerEndpoint<int>(
+        'dashboard',
+        'getSalesCount',
+        {},
+      );
+
+  /// Contoh data chart, kumpulkan member baru berdasarkan mode & period
+  /// mode = 'yearly' / 'monthly'
+  /// period = '2023' / 'Februari' (opsional)
+  _i2.Future<Map<String, int>> getMemberChartData({
+    required String mode,
+    String? period,
+  }) =>
+      caller.callServerEndpoint<Map<String, int>>(
+        'dashboard',
+        'getMemberChartData',
+        {
+          'mode': mode,
+          'period': period,
+        },
+      );
+}
+
+/// {@category Endpoint}
 class EndpointDatabaseMember extends _i1.EndpointRef {
   EndpointDatabaseMember(_i1.EndpointCaller caller) : super(caller);
 
@@ -36,6 +78,14 @@ class EndpointDatabaseMember extends _i1.EndpointRef {
         'databaseMember',
         'getDatabaseMemberById',
         {'id': id},
+      );
+
+  _i2.Future<List<_i3.DatabaseMember>> getDatabaseMemberByPelangganId(
+          int pelangganId) =>
+      caller.callServerEndpoint<List<_i3.DatabaseMember>>(
+        'databaseMember',
+        'getDatabaseMemberByPelangganId',
+        {'pelangganId': pelangganId},
       );
 
   _i2.Future<bool> addDatabaseMember(_i3.DatabaseMember databaseMember) =>
@@ -259,12 +309,15 @@ class Client extends _i1.ServerpodClientShared {
           disconnectStreamsOnLostInternetConnection:
               disconnectStreamsOnLostInternetConnection,
         ) {
+    dashboard = EndpointDashboard(this);
     databaseMember = EndpointDatabaseMember(this);
     example = EndpointExample(this);
     informasi = EndpointInformasi(this);
     member = EndpointMember(this);
     sales = EndpointSales(this);
   }
+
+  late final EndpointDashboard dashboard;
 
   late final EndpointDatabaseMember databaseMember;
 
@@ -278,6 +331,7 @@ class Client extends _i1.ServerpodClientShared {
 
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
+        'dashboard': dashboard,
         'databaseMember': databaseMember,
         'example': example,
         'informasi': informasi,

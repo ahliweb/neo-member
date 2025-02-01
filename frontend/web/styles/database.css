@@ -11,6 +11,22 @@
     margin-bottom: 16px;
 }
 
+.database-page .database-list-container {
+  display: flex;
+  justify-content:right;
+  align-items: left;
+  margin-bottom: 16px;
+  flex-direction: column;
+}
+
+.search-header {
+  display: flex;
+  justify-content:right;
+  align-items: right;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
 .database-page .search-input {
   width: 250px;
   padding: 8px 12px;
@@ -34,6 +50,7 @@
 
 .database-page .database-table th,
 .database-page .database-table td {
+  width: 16.67%;
   text-align: left;
   padding: 12px 16px;
   border-bottom: 1px solid #e5e7eb;
@@ -60,19 +77,39 @@
 }
 
 /* Lihat Bukti Button */
+.database-page-buttons{
+  display: flex; /* Use flexbox to keep buttons side by side */
+  gap: 4px; /* Add spacing between buttons */
+  flex-direction: row;
+}
 .database-page .lihat-bukti-button {
-  padding: 8px 16px;
+  padding: 8px 8px;
   background-color: #16a34a;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-right: 4px;
+  /* transition: background-color 0.3s ease; */
 }
 
 .database-page .lihat-bukti-button:hover {
   background-color: #059669;
+}
+.database-page .edit-bukti-button {
+  padding: 8px 8px;
+  background-color: #F59E0B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease; */
+}
+
+.database-page .edit-bukti-button:hover {
+  background-color: #D97706;
 }
 
 .popup-container {
@@ -104,15 +141,96 @@
 }
 
 /* Carousel Styles */
-.carousel-image-container img {
-  max-width: 1000px;
-  max-height: 600px;
+/* ===== PAYMENT POPUP STYLES ===== */
+.payment-popup-overlay {
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Efek blur dan transparan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.carousel-image-container {
-  margin-bottom: 16px; /* Beri jarak antara gambar utama dan thumbnail */
+.payment-popup-content {
+  position: relative;
+  /* background: white; */
+  padding: 20px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+  max-width: 80%;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Keterangan Bukti Pembayaran */
+.payment-description {
+  font-size: 1rem;
+  color: #374151;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+  max-width: 90%;
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Pesan ketika tidak ada bukti pembayaran */
+.payment-no-data {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f9fafb;
+  padding: 28px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-image {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  gap: 10px;
+}
+
+.carousel-prev,
+.carousel-next {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: #0f9d58;
+}
+
+/* Thumbnail Navigation */
 .carousel-thumbnails {
   display: flex;
   gap: 8px;
@@ -124,6 +242,7 @@
 .thumbnail {
   width: 50px;
   height: 50px;
+  object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
   border-radius: 4px;
@@ -136,38 +255,259 @@
 
 .thumbnail.active {
   border-color: #16a34a;
-  box-shadow: 0 0 4px rgba(22, 163, 74, 0.5); /* Highlight gambar aktif */
+  box-shadow: 0 0 4px rgba(22, 163, 74, 0.5);
 }
 
-.carousel-prev,
-.carousel-next {
+/* Tombol Close */
+.payment-popup-overlay .close-button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: white;
-  background: #16a34a;
-  border: none;
-  padding: 8px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.carousel-prev {
-  left: -20px;
-}
-
-.carousel-next {
-  right: -20px;
-}
-
-.close-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 15px;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
 }
 
+.payment-popup-overlay  .close-button:hover {
+  color: red;
+}
+
+
+/* ======= Database Bukti List ======= */
+.database-bukti-list {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.bukti-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bukti-table th,
+.bukti-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bukti-table th {
+  font-weight: 600;
+  background-color: #f3f4f6;
+}
+
+.bukti-table td {
+  background-color: white;
+}
+
+.bukti-image {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.no-bukti-message{
+  text-align: center;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #555;
+}
+
+/* ======= Buttons ======= */
+.bukti-list-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-bukti,
+.delete-bukti {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-bukti {
+  background-color: #1d4ed8;
+  color: white;
+}
+
+.edit-bukti:hover {
+  background-color: #1e40af;
+}
+
+.delete-bukti {
+  background-color: #dc2626;
+  color: white;
+  margin-left: 8px;
+}
+
+.delete-bukti:hover {
+  background-color: #b91c1c;
+}
+
+.add-bukti {
+  display: block;
+  padding: 12px 16px;
+  margin-top: 16px;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.add-bukti:hover {
+  background-color: #059669;
+}
+
+.close-bukti-list {
+  margin-top: 8px;
+  padding: 12px 16px;
+  background-color: #E5E7EB;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.close-bukti-list:hover {
+  background-color: #D1D5DB;
+}
+
+/* ======= Bukti Form Styles ======= */
+.database-bukti-form {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.database-bukti-form .form-group {
+  margin-bottom: 16px;
+}
+.database-bukti-form .form-group-bukti {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.database-bukti-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.database-bukti-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+.database-bukti-form .bukti-image-preview {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.database-bukti-form .save-button,
+.database-bukti-form .cancel-button,
+.database-bukti-form .upload-button {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.database-bukti-form .upload-button{
+  background-color: #16a34a;
+  color: white;
+}
+.database-bukti-form .upload-button:hover{
+  background-color: #059669;
+}
+
+.database-bukti-form .save-button {
+  background-color: #16a34a;
+  color: white;
+  margin-right: 8px;
+}
+
+.database-bukti-form .save-button:hover {
+  background-color: #059669;
+}
+
+.database-bukti-form .cancel-button {
+  background-color: #dc2626;
+  color: white;
+}
+
+.database-bukti-form .cancel-button:hover {
+  background-color: #b91c1c;
+}
+
+/* ======= Popup Delete Bukti ======= */
+.delete-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-popup {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  text-align: center;
+}
+
+.popup-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-button {
+  background-color: #dc2626;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.confirm-button:hover {
+  background-color: #b91c1c;
+}

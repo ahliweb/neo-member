@@ -61,7 +61,7 @@
 
 .formulir-table th,
 .formulir-table td {
-  width: 25%;
+  width: 20%;
   text-align: left;
   padding: 18px 16px;
   font-size: 1rem;
@@ -245,5 +245,21 @@
 .pagination .page-info {
   color: #6b7280;
   font-weight: 400;
+}
+
+.action-button.view-detail{
+  padding: 6px 8px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+  background-color: #10b981;
+  color: white;
+}
+.action-button.view-detail:hover {
+
+  background-color: #059669;
+
 }
 

@@ -16,7 +16,7 @@ class FormulirPage extends StatefulComponent {
 class _FormulirPageState extends State<FormulirPage> {
   final client = Client('http://localhost:8080/');
 
-  List<Member> memberList = [];
+  List<MemberWithSalesName> memberList = [];
   List<Sales> salesList = [];
   Member? selectedMember;
   String currentView = 'list'; 
@@ -42,16 +42,42 @@ class _FormulirPageState extends State<FormulirPage> {
       // Ambil semua member
       final members = await client.member.getAllMembers();
       final salesData = await client.sales.getAllSales();
+
+      // Buat list enriched
+      final List<MemberWithSalesName> enriched = [];
+      for (final m in members) {
+        String nameSales = '-';
+        if (m.salesPelangganSalesId != null) {
+          final s = await client.sales.getSalesById(m.salesPelangganSalesId!);
+          if (s != null) {
+            nameSales = s.namaSales;
+          }
+        }
+        enriched.add(MemberWithSalesName(member: m, salesName: nameSales));
+      }
+
       setState(() {
-        memberList = members;
+        memberList = enriched;  // <- Pastikan Tipe data memberList = List<MemberWithSalesName>
         salesList = salesData;
+        isLoading = false;
       });
     } catch (e) {
       print('Error fetching data: $e');
-    } finally {
       setState(() => isLoading = false);
     }
   }
+
+
+  Future<String?> fetchSalesName(int salesId) async {
+    try {
+      final sales = await client.sales.getSalesById(salesId);
+      return sales?.namaSales;
+    } catch (e) {
+      print('Error fetching salesName: $e');
+      return null;
+    }
+  }
+
 
   // Tambahkan member baru
   Future<void> addMemberAndSales(Member member, int? salesId) async {
@@ -64,7 +90,9 @@ class _FormulirPageState extends State<FormulirPage> {
 
     try {
       // Tambah member ke database
-      final isMemberAdded = await client.member.addMember(member);
+      // Update salesPelangganSalesId sebelum menyimpan
+      final updatedMember = member.copyWith(salesPelangganSalesId: salesId);
+      final isMemberAdded = await client.member.addMember(updatedMember);
 
       if (isMemberAdded) {
         // Kaitkan member dengan sales
@@ -152,6 +180,7 @@ class _FormulirPageState extends State<FormulirPage> {
             onSearchChange: setSearch,
             onAddFormulir: () => setState(() => currentView = 'form'),
             onViewDetail: viewDetail,
+            fetchSalesName: fetchSalesName,
           ),
         ] else if (currentView == 'form') ...[
           // Tampilkan form
@@ -165,6 +194,7 @@ class _FormulirPageState extends State<FormulirPage> {
           if (selectedMember != null)
             FormulirDetail(
               member: selectedMember!,
+              fetchSales: (salesId) => client.sales.getSalesById(salesId),
               onBack: backToList,
             )
           else

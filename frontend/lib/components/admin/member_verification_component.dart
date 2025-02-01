@@ -7,6 +7,7 @@ import 'package:membership_app_client/membership_app_client.dart' as mem;
 
 class MemberVerificationComponent extends StatefulComponent {
   final mem.Member member;
+  final List<mem.Sales> salesList; // Tambahkan daftar sales
   final Function(mem.Member) onVerify;
   final VoidCallback onCancel;
   final Function(String, bool) showNotification; // Tambahkan ini
@@ -14,6 +15,7 @@ class MemberVerificationComponent extends StatefulComponent {
   const MemberVerificationComponent({
     super.key,
     required this.member,
+    required this.salesList,
     required this.onVerify,
     required this.onCancel,
     required this.showNotification,
@@ -50,12 +52,16 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
   html.File? newKtpFile;
   bool isUploading = false;
 
+  bool isKtpPopupVisible = false; // Untuk mengatur popup KTP
+  int? selectedSalesId; // Menyimpan ID sales yang dipilih
+
 
 
   @override
   void initState() {
     super.initState();
     editedMember = component.member;
+    selectedSalesId = component.member.salesPelangganSalesId;
 
     // 1. Fetch data provinsi (untuk KTP dan domisili)
     fetchProvinces().then((_) {
@@ -402,7 +408,7 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
   Future<void> saveUpdatedMember() async {
     try {
       print('Updating member in backend: ${editedMember.toJson()}');
-      final result = await mem.Client('http://localhost:8080/').member.updateMember(editedMember);
+      final result = await mem.Client('http://localhost:8080/').member.updateMember(editedMember.copyWith(salesPelangganSalesId: selectedSalesId));
       if (!result) {
         print('Failed to save member');
         component.showNotification('Gagal menyimpan perubahan KTP', false);
@@ -414,13 +420,6 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
       component.showNotification('Terjadi kesalahan saat menyimpan perubahan KTP', false);
     }
   }
-
-  
-
-  
-
-
-
 
   void updateField(String field, String value) {
     if (editedMember.status == 'Valid') return; // Tidak bisa update jika status valid
@@ -468,7 +467,13 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
     });
   }
 
-  
+  void toggleKtpPopup() {
+    if (filePreviewUrl != null || editedMember.ktp != null) {
+      setState(() {
+        isKtpPopupVisible = !isKtpPopupVisible;
+      });
+    }
+  }
 
 
   @override
@@ -483,11 +488,9 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
             classes: 'ktp-image',
             attributes: {
               'style': 'cursor: pointer;',
-              'title': 'Klik untuk mengganti KTP',
+              'title': 'Klik untuk memperbesar KTP',
             },
-            events: {
-              'click': (event) => promptUploadKTP(), // Memungkinkan mengganti file
-            },
+            events: {'click': (event) => toggleKtpPopup()},
           )
         else if (editedMember.ktp != null)
           img(
@@ -496,28 +499,36 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
             classes: 'ktp-image',
             attributes: {
               'style': 'cursor: pointer;',
-              'title': 'Klik untuk mengganti KTP',
+              'title': 'Klik untuk memperbesar KTP',
             },
             events: {
-              'click': (event) => promptUploadKTP(), // Memungkinkan mengganti file
+              'click': (event) => toggleKtpPopup(), 
             },
           )
         else
           div(
             classes: 'ktp-not-found',
-            attributes: {
-              'style': 'cursor: pointer;',
-              'title': 'Klik untuk mengunggah KTP',
-            },
-            events: {
-              'click': (event) => promptUploadKTP(), // Jika file belum ada
-            },
             [text('KTP Tidak Ditemukan')],
           ),
+
+        // Tombol Ubah/Tambah KTP
+        div(classes: 'ktp-buttons', [
+          if (filePreviewUrl != null || editedMember.ktp != null)
+            button(
+              classes: 'ktp-button edit',
+              onClick: promptUploadKTP,
+              [text('Ubah KTP')],
+            )
+          else
+            button(
+              classes: 'ktp-button add',
+              onClick: promptUploadKTP,
+              [text('Tambah KTP')],
+            ),
+        ]),
       ]),
 
-
-
+    
       div(classes: 'verification-form', [
         // Input untuk Nama Pelanggan
         div(classes: 'form-field', [
@@ -529,6 +540,25 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
             onInput: (value) {
               setState(() {
                 editedMember = editedMember.copyWith(namaPelanggan: value as String);
+              });
+            },
+          ),
+        ]),
+        div(classes: 'form-field', [
+          label([text('Sales')]),
+          select(
+            [
+              for (final sales in component.salesList)
+                option(
+                  value: sales.id.toString(),
+                  selected: selectedSalesId == sales.id,
+                  [text(sales.namaSales)],
+                ),
+            ],
+            disabled: isValid,
+            onChange: (value) {
+              setState(() {
+                selectedSalesId = int.tryParse(value.first);
               });
             },
           ),
@@ -881,6 +911,40 @@ class _MemberVerificationComponentState extends State<MemberVerificationComponen
         ),
       ]),
     ]);
+
+    // Popup KTP
+    if (isKtpPopupVisible) {
+      yield 
+      div(
+        classes: 'ktp-popup-overlay',
+        events: {
+          'click': (event) {
+            // Tutup popup jika area luar popup diklik
+            toggleKtpPopup();
+          },
+        },
+        [
+          div(
+            classes: 'ktp-popup',
+            events: {
+              'click': (event) {
+                // Mencegah event bubbling agar klik di dalam popup tidak menutupnya
+                event.preventDefault();
+              },
+            },
+            [
+              img(
+                src: filePreviewUrl ?? editedMember.ktp!,
+                alt: 'KTP Popup',
+                classes: 'popup-image',
+              ),
+              
+            ],
+          ),
+        ],
+      );
+
+    }
 
 
     // Overlay jika isUploading true

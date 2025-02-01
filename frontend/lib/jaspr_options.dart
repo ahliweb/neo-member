@@ -5,12 +5,14 @@ import 'package:jaspr/jaspr.dart';
 import 'package:frontend/components/admin/admin_layout.dart' as prefix0;
 import 'package:frontend/components/admin/charts.dart' as prefix1;
 import 'package:frontend/components/admin/information_list.dart' as prefix2;
-import 'package:frontend/pages/admin/formulir_page.dart' as prefix3;
-import 'package:frontend/pages/admin/member_page.dart' as prefix4;
-import 'package:frontend/pages/admin/sales_page.dart' as prefix5;
-import 'package:frontend/pages/about.dart' as prefix6;
-import 'package:frontend/pages/home.dart' as prefix7;
-import 'package:frontend/app.dart' as prefix8;
+import 'package:frontend/pages/admin/dashboard_page.dart' as prefix3;
+import 'package:frontend/pages/admin/database_page.dart' as prefix4;
+import 'package:frontend/pages/admin/formulir_page.dart' as prefix5;
+import 'package:frontend/pages/admin/member_page.dart' as prefix6;
+import 'package:frontend/pages/admin/sales_page.dart' as prefix7;
+import 'package:frontend/pages/about.dart' as prefix8;
+import 'package:frontend/pages/home.dart' as prefix9;
+import 'package:frontend/app.dart' as prefix10;
 
 /// Default [JasprOptions] for use with your jaspr project.
 ///
@@ -30,17 +32,19 @@ import 'package:frontend/app.dart' as prefix8;
 /// ```
 final defaultJasprOptions = JasprOptions(
   clients: {
-    prefix1.ChartComponent: ClientTarget<prefix1.ChartComponent>('components/admin/charts'),
+    prefix1.ChartDartComponent: ClientTarget<prefix1.ChartDartComponent>('components/admin/charts'),
     prefix2.InformationList: ClientTarget<prefix2.InformationList>('components/admin/information_list'),
-    prefix6.About: ClientTarget<prefix6.About>('pages/about'),
-    prefix3.FormulirPage: ClientTarget<prefix3.FormulirPage>('pages/admin/formulir_page'),
-    prefix4.MemberPage: ClientTarget<prefix4.MemberPage>('pages/admin/member_page'),
-    prefix5.SalesPage: ClientTarget<prefix5.SalesPage>('pages/admin/sales_page'),
-    prefix7.Home: ClientTarget<prefix7.Home>('pages/home'),
+    prefix8.About: ClientTarget<prefix8.About>('pages/about'),
+    prefix3.DashboardPage: ClientTarget<prefix3.DashboardPage>('pages/admin/dashboard_page'),
+    prefix4.DatabasePage: ClientTarget<prefix4.DatabasePage>('pages/admin/database_page'),
+    prefix5.FormulirPage: ClientTarget<prefix5.FormulirPage>('pages/admin/formulir_page'),
+    prefix6.MemberPage: ClientTarget<prefix6.MemberPage>('pages/admin/member_page'),
+    prefix7.SalesPage: ClientTarget<prefix7.SalesPage>('pages/admin/sales_page'),
+    prefix9.Home: ClientTarget<prefix9.Home>('pages/home'),
   },
   styles: () => [
     ...prefix0.AdminLayout.styles,
-    ...prefix6.About.styles,
-    ...prefix8.App.styles,
+    ...prefix8.About.styles,
+    ...prefix10.App.styles,
   ],
 );
